@@ -1,0 +1,477 @@
+/*Global Styling*/
+*{
+	padding:0;
+	margin:0;
+	box-sizing:border-box;
+}
+/*Font Face is so Powerful coz you can store your fonts locally and invoke them into your css code 
+using @font-face.I find it better than @import */
+@font-face {
+	font-family: "Vibes"; /*You specify the font family*/
+	src: url("/fonts/GreatVibes-Regular.ttf"); /*and Obviously the location of the fonts be it locally or an external link*/
+}
+@font-face {
+	font-family: "Ruh1";
+	src: url("/fonts/FrankRuhlLibre-Regular.ttf")
+}
+@font-face {
+	font-family: "Ruh1 Medium";
+	src: url("/fonts/FrankRuhlLibre-Medium.ttf");
+}
+
+html {
+	font-size:62.5%;
+	scroll-behavior: smooth;
+	/*Css variables is so Powerful as you can reuse them throughout the page.If You ever need to make changes 
+	you just come and change the variables.Instead of makeing changes everywhere*/
+	/*Variable declaration is always made on the html selector*/
+	/*Next we use a fluid value that grows with the viewport,basically it adds 1% of the 
+	viewport width to the original size very Smart Powerful !!!*/
+	--header1: calc(2.0rem + 1vw);
+	--header2: calc(3.5rem + 1vw);
+	--header3: calc(3rem + 1vw);
+	--header4: calc(2.4rem + 1vw);
+	--text: calc(1.5rem + 1vw);
+	--big: calc(6rem + 1vw);
+	--special-color: #906272;
+	--background-color:#414141;
+	--gray-text:#525252;
+	--div-color:blue;
+	--span-color:lightgreen;
+}
+
+h1 {
+	/*You can reference the variable like this*/
+	font-size: var(--header1);
+}
+
+h2 {
+	font-size: var(--header2);
+}
+h3 {
+	font-size: var(--header3);
+}
+h4,h5 {
+	font-size: var(--header4);
+}
+a {
+	color:inherit;
+  	text-decoration:none;
+}
+
+a,
+li,
+button,
+label,
+input,
+p {
+	list-style:none;
+	font-size: var(--text);
+}
+
+/*Helper Classes.Very Powerful.Simply add it to your html and all the styles get applied instantly*/
+/*Its almost like normal classes just that you start with the css first and add to the desired element*/
+
+.flex{
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+/* ********************************************** */
+body {
+	font-family: "Ruh1", sans-serif;
+	animation: opening 1s ease-in-out forwards; /* delay iteration-count direction fill-mode;*/
+}
+h1 {
+	font-family: "Vibes", sans-serif;
+}
+
+.main-head{
+	box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+	z-index: 2; /*This is to ensure we still see the box-shadow: even though theres an image right below.Basically it moves shadow on top of the rest*/
+	/*If the shadow still breaks give add a position relative*/
+	position: relative;
+}
+
+nav {
+	width:90%;
+	margin:auto;
+	display:flex;
+	align-items: center;
+	min-height: 10vh;
+	padding: 2rem 0;
+}
+
+#logo {
+	flex:1 1 20rem;
+}
+.nav-links {
+	display:flex;
+	justify-content: space-around;
+	flex:1 1 20rem;
+}
+
+.hero {
+	min-height: 90vh;
+	width:95%;
+	margin: 0 0 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	overflow: hidden; /*Just to remove the image bits sticking out*/
+}
+
+.hero-introduction {
+	text-align:center;
+	flex:2 1 41rem;
+}
+
+.hero-introduction h2 {
+	padding:3rem;
+}
+
+.hero-introduction p {
+	line-height: 1.5;
+	padding:2.0rem 1.0rem;
+	color:var(--gray-text);
+}
+.hero-introduction a {
+	padding:2rem 8rem;	
+	border: 3px solid #000;
+	margin-bottom:4rem;
+}
+
+.hero-images {
+	background:linear-gradient(#dad8dd, #dad1d4);
+	flex:1 1 41rem;
+	position:relative; /*This is so the leaves are positioned from inside this container*/
+	z-index: 1;
+}
+
+.hero-elena {
+	width:100%;
+	height:100%;
+	object-fit: cover; /*This prevents the image form getting squashed and it mantains its aspect ratio*/
+}
+
+.plant {
+	position:absolute;
+	bottom: 0;
+	left:-20%; /*The negavtive value makes it moves 20 outside of the div*/
+	z-index:-1; /*So Its slightly above the helena Image*/
+	transform: translateY(10%) rotateZ(-10deg) rotateX(90deg); /*This is to prevent the weird effect that happens when you add a delay in the animations*/
+	/*forwards so it stays in its final positon and not go back to the starting point*/
+	animation: plant-entrance 1.5s ease-in-out 0.5s forwards,  /*Use a comma to add multiple animations*/
+	  plant-shake 2.5s infinite ease alternate-reverse 2s;
+	transform-origin: bottom; /*This plant move from the bottom and upwards*/ 
+	max-height: 80%;
+}
+.plant2 {
+	left: 40%;
+}
+
+/* ANIMATIONS */
+@keyframes opening { /*Note you can give your  keyframes any name of your liking*/
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;	
+	}
+}
+@keyframes plant-entrance {
+	from {
+		transform: translateY(10%) rotateZ(-10deg) rotateX(90deg); /*will move the item down 10% a negative value will move it 10 upwards*/
+	}
+	to {
+		transform: translateY(0) rotateZ(0deg) rotateX(0deg); /*will move the item down 10% a negative value will move it 10 upwards*/
+	}	
+}
+
+@keyframes plant-shake {
+	from {
+		transform:rotateZ(-5deg);
+	}
+	to {
+		transform: rotateZ(0deg);
+	}
+}
+/*this is so we dont see the menu nor the checkbox until we hit the media query*/
+.burger, .menu-check {
+	display:none;
+}
+
+/***About Section******/
+.about {
+	min-height:100vh;
+	display:flex;
+	flex-wrap:wrap;
+}
+.about-image {
+	flex:1 1 40rem;
+	position:relative;
+}
+.about-image img {
+	width:100%;
+	height:100%;
+	object-fit:cover;
+}
+.about-image h5 {
+	position:absolute;
+	top:20%;
+	left:50%;
+	transform:translate(-50%, -20%);
+	letter-spacing:2rem;
+}
+.about-text {
+	flex:2 1 40rem;
+	color:white;
+	background: var(--background-color);
+	/*we make use of our helper class*/
+	justify-content:space-around;
+	/*padding-left:7.0rem;*/
+}
+.about-text h2 {
+	padding:4rem;
+	font-family:"Vibes";
+}
+.about-text h3 {
+	padding:2rem 0;
+	font-family:"Ruh1 Medium";
+}
+.about-text div {
+	padding:3rem 8rem;
+}
+
+/***Gallery Section***/
+.gallery {
+	min-height:100vh;
+	display:grid;
+	grid-template-columns:repeat(3, 1fr);
+	position:relative; /*for the banner*/
+}
+.gallery img {
+	width:100%;
+	height:100%;
+	object-fit:cover;
+}
+.pic1 {
+	grid-column:1 / 3;
+}
+.pic2 {
+	grid-column:3 / 4;
+	grid-row:1 /span 2;
+}
+
+.gallery-head {
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50% , -50%);
+	color:#fff;
+	background:var(--background-color);
+	/* width:40%; */
+	/* margin:auto; */
+	padding:5rem 10rem;
+	text-align:center;
+}
+
+/****Contacts Section***/
+.contact {
+	min-height: 90vh;
+	display: flex;
+	flex-wrap: wrap;
+}
+.form-wrapper {
+	flex:3 1 40rem;	
+}
+.form-wrapper h2 {
+	margin:5rem 0rem;
+}
+.form-wrapper label {
+	display: block;
+}
+
+.form-wrapper input {
+	display:block;
+	margin:3rem 0rem;
+	background:var(--background-color);
+	color:#fff;
+	border:none;
+	outline:none;
+	padding:1rem;
+}
+
+.form-wrapper button {
+	padding:1rem 8rem;
+	background:var(--special-color);
+	color:white;
+	border:none;
+	width:100%;
+}
+
+.form-wrapper span {
+	font-size:var(--big);
+	color:var(--special-color);
+}
+
+.Contact img{
+	flex:1 1 40rem;	
+}
+
+/****Footer Section****/
+footer {
+	background:var(--background-color);
+	color:white;
+	display:flex;
+	padding:3rem 5%; /*Its perfectly legal to use % in padding (:-*/
+	align-items:center;
+	flex-wrap: wrap;
+}
+footer h4 {
+	flex:3 1 40rem;;
+	font-size:calc(1.4rem + 1vw);
+}
+footer ul {
+	flex:1 1 40rem;
+	display:flex;
+	justify-content: space-between;
+}
+
+
+
+
+
+
+
+/*******************************************/
+/*Method One of implimenting Media Queries*/
+/*Media Queries so we only activate the menu on a mobile view.*/
+@media screen and (max-width: 842px) {
+	.burger {
+		display:block;
+		position:relative;
+	}
+	.burger span {
+		padding:0.2rem 2rem;
+		background: var(--gray-text);
+		margin:0.5rem 0.5rem;
+		display:block; /*Spans are inline by default*/
+		/*Animating the Burger*/
+		transition:all 0.5s ease;
+	}
+	/*We want to remove the nav-links */
+	.nav-links {
+		/*First style your links the way you want to see them on mobile then later on add the animation*/
+		background: var(--background-color);
+		width:70%;
+		height:100%;
+		position:fixed; /*So Its always on top*/
+		top:0;
+		left:100%;
+		/*right:0;*/
+		flex-direction:column; /*Add it on the Parent*/
+		align-items:center;
+		/*Animating the nav links.Heres why we used transform in the menu-checked coz now we can target it without using keyframes*/
+		transition:transform 1s ease;
+	}
+	 /*to make the menu visible even after we reveal the nav links*/
+
+	/*Hamburger menu*/
+	 .burger {
+		 position:relative;
+		 display: block;
+		 cursor: pointer;
+	 }
+	 .burger span {
+		 padding:0.2rem 2rem;
+		 background:var(--gray-text);
+		 margin:0.5rem 0rem;
+		 display:block;
+	 }
+	 .nav-links a {
+		color:white;
+		font-size:var(--header3);
+		text-decoration:underline;
+	}
+
+	 /*Basically if the menu is clicked we want our selector to be .nav-open.Then we simply reveal the nav*/
+	.nav-open {
+		/*To Reverse the left 100%*/
+		transform:translate(-100%);
+	 }
+
+	 /*To Animate the menu itself.When its clicked/checked */
+	.toggle .line1 {
+		transform: rotateZ(45deg) translateY(300%);
+		background:#fff;
+	 }
+	.toggle .line2 {
+		opacity:0;
+	}
+	.toggle .line3 {
+		transform:rotateZ(-45deg) translateY(-300%); /*translateY is to push it down*/
+		background:#fff;
+	}
+		
+
+	/*Fixing Little Issues*/
+	.hero {
+		width:100%; /*so our image fills the whole screen*/
+	}
+	/****About****/
+	.about-text div {
+		padding:3rem 3rem;
+	}
+	/****Gallery**/
+	.gallery img {
+		grid-column:auto;
+		grid-row:auto;
+	}
+	.gallery {
+		grid-template-columns:repeat(auto-fit,minmax(30rem,1fr));
+	}
+	.gallery-head {
+		display:none;
+	}
+	/***Contact section***/
+	.contact img {
+		display: none;
+	}
+	footer ul {
+		order:1;
+	}
+	footer h4 {
+		order:2;
+		text-align:center;
+		padding:1rem;
+	}
+}
+
+/*Fluid fonts are excellent for responsiveness but sometimes you wanna limit it*/
+@media screen and (min-width:1700px) {  /*once we have a screen size bigger than this we apply the media query*/
+	html {
+		--header1: 3rem;
+		--header2: 5rem;
+		--header3: 4rem;
+		--header4: 3rem;
+		--text: 3rem;
+		--big: 8rem;
+		color:rgb(241, 241, 22);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
