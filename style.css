@@ -8,15 +8,15 @@
 using @font-face.I find it better than @import */
 @font-face {
 	font-family: "Vibes"; /*You specify the font family*/
-	src: url("/fonts/GreatVibes-Regular.ttf"); /*and Obviously the location of the fonts be it locally or an external link*/
+	src: url("./fonts/GreatVibes-Regular.ttf"); /*and Obviously the location of the fonts be it locally or an external link*/
 }
 @font-face {
 	font-family: "Ruh1";
-	src: url("/fonts/FrankRuhlLibre-Regular.ttf")
+	src: url("./fonts/FrankRuhlLibre-Regular.ttf")
 }
 @font-face {
 	font-family: "Ruh1 Medium";
-	src: url("/fonts/FrankRuhlLibre-Medium.ttf");
+	src: url("./fonts/FrankRuhlLibre-Medium.ttf");
 }
 
 html {
